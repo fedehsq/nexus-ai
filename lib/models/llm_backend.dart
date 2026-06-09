@@ -1,0 +1,4 @@
+enum LlmBackend {
+  cactus,
+  flutterGemma,
+}

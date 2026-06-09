@@ -1,0 +1,89 @@
+{
+  "projectId": "17028286399792345292",
+  "title": "LLM Chat Assistant",
+  "exportedAt": "2026-05-24T09:19:47.092Z",
+  "screens": [
+    {
+      "slug": "ai-chat-interface",
+      "screenId": "833f5879deee4ef0a2e07effdf883da2",
+      "title": "AI Chat Interface",
+      "name": "projects/17028286399792345292/screens/833f5879deee4ef0a2e07effdf883da2",
+      "deviceType": "MOBILE",
+      "width": "780",
+      "height": "1768",
+      "htmlFile": "screen.html",
+      "screenshotFile": "screenshot.png"
+    },
+    {
+      "slug": "cactus-framework-models",
+      "id": "af9fcbd0c00d4155b68b1ec7824ae6e8",
+      "title": "Cactus Framework Models",
+      "screenId": "af9fcbd0c00d4155b68b1ec7824ae6e8",
+      "name": "projects/17028286399792345292/screens/af9fcbd0c00d4155b68b1ec7824ae6e8",
+      "deviceType": "MOBILE",
+      "width": "780",
+      "height": "4920",
+      "htmlFile": "screen.html",
+      "screenshotFile": "screenshot.png"
+    },
+    {
+      "slug": "conversation-history",
+      "id": "ebce4e2a83e14cd7981c021eceecdc14",
+      "title": "Conversation History",
+      "screenId": "ebce4e2a83e14cd7981c021eceecdc14",
+      "name": "projects/17028286399792345292/screens/ebce4e2a83e14cd7981c021eceecdc14",
+      "deviceType": "MOBILE",
+      "width": "972",
+      "height": "1768",
+      "htmlFile": "screen.html",
+      "screenshotFile": "screenshot.png"
+    },
+    {
+      "slug": "design-system",
+      "screenId": "asset-stub-assets-f37bee0b3f2e44238f9a8b5ca24ed273-1779006912491",
+      "title": "Design System",
+      "note": "Not a UI screen; exported as design tokens and DESIGN.md from list_design_systems/get_project",
+      "assetId": "f37bee0b3f2e44238f9a8b5ca24ed273",
+      "displayName": "Lumina AI",
+      "files": [
+        "DESIGN.md",
+        "design-theme.json",
+        "design-systems.json"
+      ]
+    },
+    {
+      "slug": "lista-modelli-ufficiali-cactus",
+      "id": "d31e9c526add413395d368e7079b445e",
+      "title": "Lista Modelli Ufficiali Cactus",
+      "screenId": "d31e9c526add413395d368e7079b445e",
+      "name": "projects/17028286399792345292/screens/d31e9c526add413395d368e7079b445e",
+      "deviceType": "MOBILE",
+      "width": "780",
+      "height": "4966",
+      "htmlFile": "screen.html",
+      "screenshotFile": "screenshot.png"
+    },
+    {
+      "slug": "model-selection",
+      "screenId": "1bcc925fc85e48dd983138ed53d0e881",
+      "title": "Model Selection",
+      "name": "projects/17028286399792345292/screens/1bcc925fc85e48dd983138ed53d0e881",
+      "deviceType": "MOBILE",
+      "width": "858",
+      "height": "2756",
+      "htmlFile": "screen.html",
+      "screenshotFile": "screenshot.png"
+    },
+    {
+      "slug": "model-settings",
+      "screenId": "2e29ba735a614d4dacfeb5a9ac31827e",
+      "title": "Model Settings",
+      "name": "projects/17028286399792345292/screens/2e29ba735a614d4dacfeb5a9ac31827e",
+      "deviceType": "MOBILE",
+      "width": "780",
+      "height": "3248",
+      "htmlFile": "screen.html",
+      "screenshotFile": "screenshot.png"
+    }
+  ]
+}

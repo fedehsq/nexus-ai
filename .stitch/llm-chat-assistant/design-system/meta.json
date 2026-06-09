@@ -1,0 +1,12 @@
+{
+  "screenId": "asset-stub-assets-f37bee0b3f2e44238f9a8b5ca24ed273-1779006912491",
+  "title": "Design System",
+  "note": "Not a UI screen; exported as design tokens and DESIGN.md from list_design_systems/get_project",
+  "assetId": "f37bee0b3f2e44238f9a8b5ca24ed273",
+  "displayName": "Lumina AI",
+  "files": [
+    "DESIGN.md",
+    "design-theme.json",
+    "design-systems.json"
+  ]
+}

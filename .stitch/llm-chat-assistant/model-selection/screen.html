@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus AI | Model Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(34, 42, 61, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(144, 143, 160, 0.1);
+        }
+        .active-card {
+            border-color: #c0c1ff;
+            background: rgba(128, 131, 255, 0.1);
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px -10px rgba(192, 193, 255, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#8083ff",
+                        "surface-container-lowest": "#060e20",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "tertiary": "#ffb783",
+                        "secondary": "#d0bcff",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-error": "#690005",
+                        "on-secondary": "#3c0091",
+                        "primary": "#c0c1ff",
+                        "on-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "on-background": "#dae2fd",
+                        "on-tertiary-container": "#452000",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "on-primary-fixed": "#07006c",
+                        "primary-fixed": "#e1e0ff",
+                        "inverse-surface": "#dae2fd",
+                        "outline-variant": "#464554",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#494bd6",
+                        "outline": "#908fa0",
+                        "on-secondary-fixed": "#23005c",
+                        "surface": "#0b1326",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#c0c1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "tertiary-container": "#d97721",
+                        "on-tertiary-fixed": "#301400",
+                        "secondary-container": "#571bc1",
+                        "on-primary": "#1000a9",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "surface-variant": "#2d3449",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-high": "#222a3d",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "tertiary-fixed": "#ffdcc5",
+                        "on-tertiary": "#4f2500",
+                        "on-secondary-container": "#c4abff",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-primary-container": "#0d0096",
+                        "background": "#0b1326",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-container": "#171f33",
+                        "surface-container-highest": "#2d3449",
+                        "surface-bright": "#31394d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "bubble-padding-x": "1rem",
+                        "bubble-padding-y": "0.75rem",
+                        "section-margin": "1.5rem",
+                        "stack-gap": "0.75rem",
+                        "container-padding": "1rem"
+                    },
+                    "fontFamily": {
+                        "code-sm": ["jetbrainsMono"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
+<!-- Subtle Background Elements -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-secondary/10 blur-[100px] rounded-full pointer-events-none"></div>
+<!-- Header Section (Suppressed Global Nav, using internal branding) -->
+<header class="w-full py-8 px-container-padding flex justify-center items-center">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-on-primary text-[24px]">hexagon</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Nexus AI</h1>
+</div>
+</header>
+<main class="flex-grow w-full max-w-4xl mx-auto px-container-padding pb-32">
+<section class="text-center mb-12">
+<h2 class="font-headline-lg text-headline-lg mb-4 text-on-surface">Choose Your Intelligence</h2>
+<p class="text-on-surface-variant max-w-lg mx-auto">
+                Select a model specialized for your current task. You can switch between these anytime within the chat interface.
+            </p>
+</section>
+<!-- Model Selection Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Model Card 1: Creative Assistant -->
+<div class="glass-card group cursor-pointer p-6 rounded-3xl transition-all duration-300 hover:scale-[1.02] hover:bg-surface-container-high/60 active-card" id="creative-model" onclick="selectModel(this)">
+<div class="mb-6 relative h-32 w-full rounded-2xl overflow-hidden">
+<img alt="Creative visual art" class="w-full h-full object-cover" data-alt="An abstract digital artwork showcasing fluid, organic shapes in vibrant shades of indigo and violet. The composition is dynamic and ethereal, with soft glowing gradients that suggest creativity and imagination. The style is clean, modern, and high-tech, fitting for a premium AI assistant interface in dark mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRzskB_jnRVjWXDfAlQSPsHeRsNCviQG9sMegH0xy6UjwsvmSs1hCoFs7DgXtkk3fhP8kfMhy6XL6OzF-RPr8orkC_c9k37bXnDTg_Mc53QZBuXLKlQmJW5VauXXWdFbd5m4sFwwKZSU-mSpZa_VnVjM-e0nYJdWX6ApW6hm-KgzAl_Be4513zdbhDIFn1ag8U2f1F-BNO_6ko0LmvdZJcHHA_sH5inQEGlJIup_-siyv_-9wQE4x-b9sh3A2V1woCANKiFnwyyFD7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-primary-container/20 backdrop-blur-md p-2 rounded-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-[20px]">palette</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2 text-on-surface">Creative Assistant</h3>
+<p class="text-on-surface-variant text-label-sm mb-4">Unleash imagination with prose, art concepts, and narrative design.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-variant rounded-md text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant">Narrative</span>
+<span class="px-2 py-1 bg-surface-variant rounded-md text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant">Visuals</span>
+</div>
+</div>
+<!-- Model Card 2: Code Expert -->
+<div class="glass-card group cursor-pointer p-6 rounded-3xl transition-all duration-300 hover:scale-[1.02] hover:bg-surface-container-high/60" id="code-model" onclick="selectModel(this)">
+<div class="mb-6 relative h-32 w-full rounded-2xl overflow-hidden">
+<img alt="Coding environment" class="w-full h-full object-cover" data-alt="A macro photograph of a dark computer screen displaying lines of complex code in glowing blue and purple hues. The focus is shallow, creating a sense of depth and technical precision. The lighting is moody and professional, emphasizing a modern developer environment that aligns with the deep slate and indigo brand colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxIKiMZVTC0MQPbToI7IPQYmfuP8T0wSck8w1MGVbw_XTZHNFrRiNS6WtOXwvOhmNmDMANWs3HIvvKf-uTfUQQTFmzrwLVowSRsU_VNSt4HMBWr1o0Vy3571AZ7G811iWFawIoRAmaXGu5v4PVFOIX6V07dLx4M_W-h9qDfsztuFenDulAooCTyRzOi64lc6vEJRNhHdXQe4jzqXjdAxJRdPxBTA7Cfdjsv_n1tt0N_IHIyMNR1R0XbHYrVRdSC_SSfyTjsCwqefen"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-secondary-container/20 backdrop-blur-md p-2 rounded-lg border border-secondary/20">
+<span class="material-symbols-outlined text-secondary text-[20px]">terminal</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2 text-on-surface">Code Expert</h3>
+<p class="text-on-surface-variant text-label-sm mb-4">Precision-engineered for debugging, refactoring, and complex logic.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-variant rounded-md text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant">Algorithms</span>
+<span class="px-2 py-1 bg-surface-variant rounded-md text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant">Debugging</span>
+</div>
+</div>
+<!-- Model Card 3: General Purpose -->
+<div class="glass-card group cursor-pointer p-6 rounded-3xl transition-all duration-300 hover:scale-[1.02] hover:bg-surface-container-high/60" id="general-model" onclick="selectModel(this)">
+<div class="mb-6 relative h-32 w-full rounded-2xl overflow-hidden">
+<img alt="Universal connectivity" class="w-full h-full object-cover" data-alt="A panoramic view of a digital network web spanning across a dark globe, with nodes and connections glowing in soft cyan and indigo light. The aesthetic is sleek, corporate, and global, representing wide-reaching knowledge and balanced capabilities. The lighting is diffused and professional, matching the intelligent minimalism of the UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDenBjk4emTy6gwrxPN5XoDgDAHsdPSKtIo0UChkIRN_dxsx8r0M_uNZSV9CJtMTE79gMBelt8pmWO7cw5z-dfSei0mcVWldqG9ppKdba62lg5PTg3OQn1XEvtERDtDxy-L9MdBFuD2ANUHC7Mhk4ohmEbGcmUmc_ARxa_0u86EQDXOD-TRvjhSLopDGTyYlDzf9IKX1LZ5RCZxYgZCjYC0kMFzqJmtznLvO3pJ-fB0Hr4kWsH1cyoSsOmwkZroW5kqzqPY-aY4_-b7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-tertiary-container/20 backdrop-blur-md p-2 rounded-lg border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary text-[20px]">hub</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2 text-on-surface">General Purpose</h3>
+<p class="text-on-surface-variant text-label-sm mb-4">A balanced polymath for daily tasks, analysis, and general inquiries.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-variant rounded-md text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant">Analysis</span>
+<span class="px-2 py-1 bg-surface-variant rounded-md text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant">Versatile</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full p-6 flex justify-center backdrop-blur-xl bg-surface/80 border-t border-outline-variant/10">
+<button class="w-full max-w-sm bg-primary text-on-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 shadow-xl shadow-primary/20 hover:bg-primary-fixed" id="start-button">
+<span>Get Started</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<script>
+        function selectModel(element) {
+            // Remove active classes from all cards
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.classList.remove('active-card');
+                card.classList.remove('glow-effect');
+            });
+            
+            // Add active classes to the clicked card
+            element.classList.add('active-card');
+            element.classList.add('glow-effect');
+
+            // Trigger a small haptic-like scale effect on the button
+            const btn = document.getElementById('start-button');
+            btn.classList.add('scale-105');
+            setTimeout(() => btn.classList.remove('scale-105'), 150);
+        }
+
+        // Entrance animation logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * (index + 1));
+            });
+        });
+    </script>
+</body></html>

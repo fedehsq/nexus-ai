@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus AI - Intelligent Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#8083ff",
+                        "surface-container-lowest": "#060e20",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "tertiary": "#ffb783",
+                        "secondary": "#d0bcff",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-error": "#690005",
+                        "on-secondary": "#3c0091",
+                        "primary": "#c0c1ff",
+                        "on-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "on-background": "#dae2fd",
+                        "on-tertiary-container": "#452000",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "on-primary-fixed": "#07006c",
+                        "primary-fixed": "#e1e0ff",
+                        "inverse-surface": "#dae2fd",
+                        "outline-variant": "#464554",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#494bd6",
+                        "outline": "#908fa0",
+                        "on-secondary-fixed": "#23005c",
+                        "surface": "#0b1326",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#c0c1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "tertiary-container": "#d97721",
+                        "on-tertiary-fixed": "#301400",
+                        "secondary-container": "#571bc1",
+                        "on-primary": "#1000a9",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "surface-variant": "#2d3449",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-high": "#222a3d",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "tertiary-fixed": "#ffdcc5",
+                        "on-tertiary": "#4f2500",
+                        "on-secondary-container": "#c4abff",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-primary-container": "#0d0096",
+                        "background": "#0b1326",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-container": "#171f33",
+                        "surface-container-highest": "#2d3449",
+                        "surface-bright": "#31394d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "bubble-padding-x": "1rem",
+                        "bubble-padding-y": "0.75rem",
+                        "section-margin": "1.5rem",
+                        "stack-gap": "0.75rem",
+                        "container-padding": "1rem"
+                    },
+                    "fontFamily": {
+                        "code-sm": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .chat-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background: rgba(192, 193, 255, 0.1);
+            border-radius: 10px;
+        }
+        .fade-mask {
+            mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+        }
+        @keyframes subtle-pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        .status-pulse {
+            animation: subtle-pulse 2s infinite ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md selection:bg-primary/30">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-padding h-16 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-primary/10 transition-colors rounded-full active:scale-95 duration-150 transition-all">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
+</button>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Nexus AI</span>
+<div class="flex items-center gap-1.5 -mt-1">
+<div class="w-2 h-2 rounded-full bg-[#4ADE80] status-pulse shadow-[0_0_8px_rgba(74,222,128,0.5)]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Nexus-7B Online</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="hidden md:flex items-center gap-2 px-4 py-2 bg-surface-variant/30 rounded-full hover:bg-primary/10 transition-all border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm">Upgrade Pro</span>
+</button>
+<button class="p-2 hover:bg-primary/10 transition-colors rounded-full active:scale-95 duration-150 transition-all">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">settings</span>
+</button>
+</div>
+</header>
+<!-- Side Navigation Drawer (Hidden on mobile) -->
+<aside class="fixed inset-y-0 left-0 z-[60] hidden lg:flex flex-col py-6 h-full w-80 bg-surface-container-high dark:bg-surface-container-high shadow-2xl rounded-r-xl transition-transform -translate-x-full lg:translate-x-0">
+<div class="px-6 mb-8 flex items-center justify-between">
+<span class="font-headline-md text-headline-md font-black text-primary">Nexus AI</span>
+<button class="lg:hidden p-2 rounded-full hover:bg-surface-variant"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full flex items-center gap-3 p-4 bg-primary text-on-primary rounded-2xl hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-sm text-label-sm font-bold">New Thread</span>
+</button>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<div class="bg-secondary-container text-on-secondary-container rounded-full mx-2 my-1 flex items-center gap-3 px-4 py-3 cursor-pointer">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-variant rounded-full mx-2 my-1 flex items-center gap-3 px-4 py-3 cursor-pointer transition-all">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-variant rounded-full mx-2 my-1 flex items-center gap-3 px-4 py-3 cursor-pointer transition-all">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-variant rounded-full mx-2 my-1 flex items-center gap-3 px-4 py-3 cursor-pointer transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+<div class="mt-auto px-6 pt-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="User profile picture" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTJEOCexyX71IqedIwsGApOkqi--aMA9t70e0SCBFGcwWIDkpCinUtxYk-g8fVskAMULczCo8To9eGZFZK1yzXIrqd5uAF1EPxZahevMTNO14_HMDK8ckuzfzml2a3IzaEprY8eEm5optjMaKM54-K868jdiorpcwAzTfncwN8ya7HcUv9nEvXDzBRMQp2by7yeYFfJN3iuZULjloDIoyobyWROP14IQRKA5WfoB7C53dC__RzvCck0G4n-Wqw8cQK3e8cE5DscVhL"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Power User</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Pro Plan Active</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="relative h-screen flex flex-col pt-16 pb-20 lg:ml-80">
+<!-- Message Thread -->
+<div class="flex-1 overflow-y-auto px-container-padding py-6 chat-container flex flex-col gap-6">
+<!-- AI Welcome Message -->
+<div class="flex flex-col items-start max-w-[85%] animate-fade-in">
+<div class="flex items-center gap-2 mb-2 ml-2">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Nexus-7B</span>
+</div>
+<div class="bg-surface-container-low text-on-surface p-bubble-padding-x rounded-2xl rounded-tl-none border border-outline-variant/10 glass-panel shadow-sm">
+<p class="font-body-md text-body-md leading-relaxed">
+                        Hello! I'm Nexus, your advanced intelligence assistant. How can I help you streamline your workflow or explore new ideas today?
+                    </p>
+</div>
+<span class="text-[10px] text-on-surface-variant mt-2 ml-2">Just now</span>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end max-w-[85%] self-end">
+<div class="bg-primary text-on-primary p-bubble-padding-x rounded-2xl rounded-tr-none shadow-xl shadow-primary/10">
+<p class="font-body-md text-body-md leading-relaxed">
+                        Can you help me design a bento-style layout for a dashboard? I want it to feel modern, dark-themed, and use indigo as the main accent color.
+                    </p>
+</div>
+<span class="text-[10px] text-on-surface-variant mt-2 mr-2">10:42 AM</span>
+</div>
+<!-- AI Detailed Response -->
+<div class="flex flex-col items-start max-w-[90%]">
+<div class="flex items-center gap-2 mb-2 ml-2">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Nexus-7B</span>
+</div>
+<div class="bg-surface-container-low text-on-surface p-bubble-padding-x rounded-2xl rounded-tl-none border border-outline-variant/10 glass-panel">
+<div class="space-y-4">
+<p class="font-body-md text-body-md">Absolutely! A Bento Grid layout is perfect for dashboards. Here's a conceptual direction:</p>
+<!-- Mini Bento Demo Cards -->
+<div class="grid grid-cols-2 grid-rows-2 gap-2 h-48 w-full md:w-96 my-4">
+<div class="col-span-1 row-span-2 bg-surface-bright/50 rounded-xl border border-outline-variant/20 p-3 flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<div class="h-1 w-full bg-primary/20 rounded-full overflow-hidden"><div class="h-full w-2/3 bg-primary"></div></div>
+</div>
+<div class="col-span-1 bg-surface-bright/50 rounded-xl border border-outline-variant/20 p-3 flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<div class="w-8 h-1 bg-on-surface-variant/30 rounded-full"></div>
+<div class="w-12 h-1 bg-on-surface-variant/20 rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">north_east</span>
+</div>
+<div class="col-span-1 bg-primary/10 rounded-xl border border-primary/20 p-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</div>
+<ul class="list-disc ml-5 space-y-2 text-on-surface-variant">
+<li>Use <code class="font-code-sm text-code-sm bg-surface-variant px-1 rounded">bg-surface-container-high</code> for the base panel.</li>
+<li>Vary card spans (e.g., 2x2, 1x2) to create visual rhythm.</li>
+<li>Apply <code class="font-code-sm text-code-sm bg-surface-variant px-1 rounded">backdrop-blur-md</code> to high-level cards.</li>
+</ul>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-3 ml-2">
+<button class="p-1.5 hover:bg-primary/10 rounded-lg transition-colors text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-lg transition-colors text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-lg transition-colors text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">thumb_down</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-lg transition-colors text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Empty Spacer -->
+<div class="h-12"></div>
+</div>
+<!-- Input Bar Area -->
+<div class="fixed bottom-0 left-0 lg:left-80 right-0 z-40 bg-surface/90 dark:bg-surface/90 backdrop-blur-md px-container-padding pb-6 pt-2">
+<!-- Chips/Suggestions -->
+<div class="flex gap-2 mb-3 overflow-x-auto no-scrollbar pb-1">
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm hover:border-primary hover:text-primary transition-all">
+                    Generate React component
+                </button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm hover:border-primary hover:text-primary transition-all">
+                    Explain quantum computing
+                </button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm hover:border-primary hover:text-primary transition-all">
+                    Help me debug code
+                </button>
+</div>
+<div class="relative flex items-end gap-2 bg-surface-container-high rounded-3xl p-2 border border-outline-variant/10 shadow-lg group focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<button class="p-3 hover:bg-surface-variant rounded-full text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 resize-none py-3 text-body-md font-body-md text-on-surface placeholder-on-surface-variant/50 max-h-40" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" placeholder="Message Nexus..." rows="1"></textarea>
+<div class="flex items-center gap-1 mb-1 mr-1">
+<button class="p-2.5 hover:bg-surface-variant rounded-full text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-2.5 bg-primary text-on-primary rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Bottom Nav -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface/90 dark:bg-surface/90 backdrop-blur-md border-t border-outline-variant/10">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-6 py-1 active:scale-110 duration-200 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded-xl">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded-xl">
+<span class="material-symbols-outlined">model_training</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded-xl">
+<span class="material-symbols-outlined">person</span>
+</div>
+</nav>
+</main>
+<script>
+        // Micro-interaction: Auto-scroll to bottom of chat
+        const chatContainer = document.querySelector('.chat-container');
+        const scrollToBottom = () => {
+            chatContainer.scrollTo({
+                top: chatContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        };
+
+        // Subtle background animation
+        const body = document.body;
+        body.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            body.style.backgroundImage = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(192, 193, 255, 0.03) 0%, transparent 50%)`;
+        });
+
+        // Initialize state
+        window.addEventListener('load', () => {
+            scrollToBottom();
+        });
+    </script>
+</body></html>

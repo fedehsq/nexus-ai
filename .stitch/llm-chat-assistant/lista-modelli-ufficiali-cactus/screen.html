@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modelli Cactus - Nexus AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#8083ff",
+                    "on-secondary-container": "#c4abff",
+                    "on-primary-fixed": "#07006c",
+                    "surface-variant": "#2d3449",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "secondary-container": "#571bc1",
+                    "tertiary": "#ffb783",
+                    "on-surface-variant": "#c7c4d7",
+                    "surface-container-highest": "#2d3449",
+                    "on-secondary": "#3c0091",
+                    "surface-dim": "#0b1326",
+                    "secondary": "#d0bcff",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#171f33",
+                    "on-tertiary": "#4f2500",
+                    "on-primary-container": "#0d0096",
+                    "on-tertiary-fixed-variant": "#703700",
+                    "outline-variant": "#464554",
+                    "on-tertiary-fixed": "#301400",
+                    "surface-container-low": "#131b2e",
+                    "on-background": "#dae2fd",
+                    "on-tertiary-container": "#452000",
+                    "error-container": "#93000a",
+                    "tertiary-fixed": "#ffdcc5",
+                    "inverse-on-surface": "#283044",
+                    "inverse-surface": "#dae2fd",
+                    "error": "#ffb4ab",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "tertiary-fixed-dim": "#ffb783",
+                    "surface-container-high": "#222a3d",
+                    "primary-fixed": "#e1e0ff",
+                    "outline": "#908fa0",
+                    "secondary-fixed": "#e9ddff",
+                    "on-error": "#690005",
+                    "inverse-primary": "#494bd6",
+                    "secondary-fixed-dim": "#d0bcff",
+                    "surface": "#0b1326",
+                    "surface-container-lowest": "#060e20",
+                    "surface-tint": "#c0c1ff",
+                    "on-secondary-fixed-variant": "#5516be",
+                    "primary": "#c0c1ff",
+                    "on-surface": "#dae2fd",
+                    "on-secondary-fixed": "#23005c",
+                    "tertiary-container": "#d97721",
+                    "surface-bright": "#31394d",
+                    "on-primary": "#1000a9",
+                    "background": "#0b1326"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-margin": "1.5rem",
+                    "stack-gap": "0.75rem",
+                    "container-padding": "1rem",
+                    "bubble-padding-y": "0.75rem",
+                    "bubble-padding-x": "1rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "code-sm": ["jetbrainsMono"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(23, 31, 51, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 20px rgba(128, 131, 255, 0.1);
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3449;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-padding h-16 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-primary/10 transition-colors rounded-full active:scale-95 duration-150 transition-all">
+            menu
+        </button>
+<h1 class="font-headline-lg text-headline-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Nexus AI
+        </h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant mr-2">Cactus v2.4</span>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-primary/10 transition-colors rounded-full active:scale-95 duration-150 transition-all">
+            settings
+        </button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-4 max-w-4xl mx-auto">
+<!-- Hero Header -->
+<section class="mb-10 text-center md:text-left">
+<h2 class="font-headline-lg text-headline-lg mb-2">Modelli Cactus</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl">
+            Libreria ufficiale dei modelli supportati dal framework Cactus. Ottimizzati per inferenza on-device e integrazione mobile.
+        </p>
+</section>
+<!-- Section: Text Models -->
+<section class="mb-10">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/20 pb-2">
+<span class="material-symbols-outlined text-primary">description</span>
+<h3 class="font-headline-md text-headline-md">Modelli di Testo</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<!-- Text Model Item Generator (Simplified for brevity but complete list) -->
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">qwen3-0.6</span>
+<span class="text-xs text-on-surface-variant">Standard Text LLM</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">600M</span>
+<span class="block text-[10px] text-on-surface-variant">4k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">qwen3-1.7</span>
+<span class="text-xs text-on-surface-variant">Standard Text LLM</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">1.7B</span>
+<span class="block text-[10px] text-on-surface-variant">8k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">gemma3-270m</span>
+<span class="text-xs text-on-surface-variant">Efficient Edge LLM</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">270M</span>
+<span class="block text-[10px] text-on-surface-variant">2k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">gemma3-1b</span>
+<span class="text-xs text-on-surface-variant">Efficient Edge LLM</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">1.1B</span>
+<span class="block text-[10px] text-on-surface-variant">8k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">functiongemma-270m</span>
+<span class="text-xs text-on-surface-variant">Function Calling</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">270M</span>
+<span class="block text-[10px] text-on-surface-variant">2k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">lfm2-350m</span>
+<span class="text-xs text-on-surface-variant">Liquid Foundation</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">350M</span>
+<span class="block text-[10px] text-on-surface-variant">32k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">lfm2-700m</span>
+<span class="text-xs text-on-surface-variant">Liquid Foundation</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">700M</span>
+<span class="block text-[10px] text-on-surface-variant">32k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">lfm2-1.2b</span>
+<span class="text-xs text-on-surface-variant">Liquid Foundation</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">1.2B</span>
+<span class="block text-[10px] text-on-surface-variant">32k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">lfm2-2.6b</span>
+<span class="text-xs text-on-surface-variant">Liquid Foundation</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">2.6B</span>
+<span class="block text-[10px] text-on-surface-variant">32k Context</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex justify-between items-center hover:bg-surface-container-high transition-all group">
+<div class="flex flex-col">
+<span class="font-code-sm text-primary font-bold">youtu-llm-2b</span>
+<span class="text-xs text-on-surface-variant">Specialized Text</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-secondary">2.0B</span>
+<span class="block text-[10px] text-on-surface-variant">8k Context</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Multimodal/Vision Models -->
+<section class="mb-10">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/20 pb-2">
+<span class="material-symbols-outlined text-tertiary">visibility</span>
+<h3 class="font-headline-md text-headline-md">Multimodali / Visione</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="glass-card rounded-xl p-6 glow-indigo group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-code-sm text-primary font-bold">qwen3.5-0.8b</h4>
+<span class="px-2 py-0.5 bg-primary/10 text-primary rounded text-[10px] font-bold uppercase">Vision</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-4">Ottimizzato per l'analisi di immagini in tempo reale su dispositivi mobili.</p>
+<div class="flex justify-between border-t border-outline-variant/10 pt-3">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase">Parametri</span>
+<span class="font-label-sm">800M</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-[10px] text-on-surface-variant uppercase">Window</span>
+<span class="font-label-sm">4k</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 glow-indigo group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-code-sm text-primary font-bold">qwen3.5-2b</h4>
+<span class="px-2 py-0.5 bg-primary/10 text-primary rounded text-[10px] font-bold uppercase">Vision Pro</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-4">Alta risoluzione e comprensione spaziale avanzata per UI ed OCR.</p>
+<div class="flex justify-between border-t border-outline-variant/10 pt-3">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase">Parametri</span>
+<span class="font-label-sm">2.0B</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-[10px] text-on-surface-variant uppercase">Window</span>
+<span class="font-label-sm">8k</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 glow-indigo group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-code-sm text-primary font-bold">lfm2-vl-450m</h4>
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary rounded text-[10px] font-bold uppercase">Liquid VL</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-4">Modello ultra-leggero per classificazione visiva istantanea.</p>
+<div class="flex justify-between border-t border-outline-variant/10 pt-3">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase">Parametri</span>
+<span class="font-label-sm">450M</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-[10px] text-on-surface-variant uppercase">Window</span>
+<span class="font-label-sm">16k</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 glow-indigo group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-code-sm text-primary font-bold">lfm2.5-vl-1.6b</h4>
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary rounded text-[10px] font-bold uppercase">Liquid VL+</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-4">Capacità multimodali estese con supporto per sequenze video brevi.</p>
+<div class="flex justify-between border-t border-outline-variant/10 pt-3">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase">Parametri</span>
+<span class="font-label-sm">1.6B</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-[10px] text-on-surface-variant uppercase">Window</span>
+<span class="font-label-sm">32k</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Audio/STT Models -->
+<section class="mb-10">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/20 pb-2">
+<span class="material-symbols-outlined text-secondary">mic</span>
+<h3 class="font-headline-md text-headline-md">Audio / STT</h3>
+</div>
+<div class="flex flex-col gap-3">
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 hover:bg-surface-container-high transition-all">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary">hearing</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<h4 class="font-code-sm text-primary font-bold">whisper</h4>
+<span class="font-label-sm text-on-surface-variant">Speech-to-Text</span>
+</div>
+<p class="text-xs text-on-surface-variant">Trascrizione multilingue leader del settore con supporto offline.</p>
+</div>
+</div>
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 hover:bg-surface-container-high transition-all">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary">graphic_eq</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<h4 class="font-code-sm text-primary font-bold">parakeet</h4>
+<span class="font-label-sm text-on-surface-variant">Audio Analysis</span>
+</div>
+<p class="text-xs text-on-surface-variant">Riconoscimento vocale ultra-veloce ottimizzato per latenza minima.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface/90 backdrop-blur-md border-t border-outline-variant/10">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-4 py-1 rounded-2xl" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-4 py-1 rounded-2xl" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">Storia</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-6 py-1 active:scale-110 duration-200 transition-transform" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">model_training</span>
+<span class="font-label-sm text-label-sm font-bold">Modelli</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-4 py-1 rounded-2xl" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profilo</span>
+</a>
+</nav>
+<script>
+    // Micro-interactions and effects
+    document.querySelectorAll('button, a').forEach(el => {
+        el.addEventListener('mousedown', () => {
+            el.style.transform = 'scale(0.95)';
+        });
+        el.addEventListener('mouseup', () => {
+            el.style.transform = 'scale(1)';
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'scale(1)';
+        });
+    });
+
+    // Subtle parallax on cards based on mouse position
+    const cards = document.querySelectorAll('.glass-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xPercent = (x / rect.width - 0.5) * 2;
+            const yPercent = (y / rect.height - 0.5) * 2;
+            
+            card.style.transform = `perspective(1000px) rotateX(${-yPercent}deg) rotateY(${xPercent}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        });
+    });
+</script>
+</body></html>
