@@ -178,7 +178,3 @@ fvm flutter analyze lib
 - **Foreground service**: Gemma downloads >500 MB automatically use the foreground service (Android 9-minute limit)
 
 ---
-
-## License
-
-Private project (`publish_to: none`).
